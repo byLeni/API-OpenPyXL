@@ -14,4 +14,6 @@ city_data_list = make_data()
 # print(city_data_list)
 
 # search a data list
-search(city_data_list)
+while True:
+    search(city_data_list)
+    
