@@ -8,11 +8,8 @@ The latest modify day: Thu, December 18, 2018
 """
 
 
-def search(city_data_list):
-    print('\n- - - where do you want to know ?')
-    input_citys = input('\t>> ').split(" ")
-    print('input_citys len >> {}'.format(len(input_citys)))
-    print(input_citys)
+def search(input_citys, city_data_list):
+
     city_level = [None, None, None]
     level = 1
 
@@ -57,7 +54,13 @@ def search(city_data_list):
             city_level[2] = search_city(input_city, temp_data_list)
 
     print(city_level)
-    get_city_xyCode(city_level=city_level, city_data_list=city_data_list)
+    try:
+        xy_code = get_city_xyCode(city_level=city_level, city_data_list=city_data_list)
+    except Exception as e:
+        print('없는 지역이예요')
+        return None
+    else:
+        return xy_code
 
 def get_city_xyCode(city_level, city_data_list):
     xy_code = None
@@ -70,7 +73,8 @@ def get_city_xyCode(city_level, city_data_list):
     if xy_code is None:
         xy_code = city_data_list.get(city_level[2])
 
-    print('xy_code >> {}'.format(xy_code))
+    # print('xy_code >> {}'.format(xy_code))
+    return xy_code
 
 def search_city(input_city, city_data_list):
     for city in city_data_list.keys():
